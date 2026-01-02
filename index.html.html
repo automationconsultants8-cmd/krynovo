@@ -90,6 +90,22 @@
             66% { transform: translate(-20px, 20px) scale(0.95); }
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -193,11 +209,6 @@
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
         .hero h1 {
             font-size: clamp(48px, 8vw, 88px);
             font-weight: 600;
@@ -220,7 +231,7 @@
             color: var(--text-secondary);
             max-width: 520px;
             line-height: 1.7;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
@@ -236,17 +247,15 @@
             border: none;
             border-radius: 10px;
             color: white;
-            font-family: inherit;
             font-size: 15px;
             font-weight: 500;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
+            transition: all 0.2s;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
         }
 
         .btn-secondary {
@@ -255,67 +264,31 @@
             border: 1px solid var(--bg-tertiary);
             border-radius: 10px;
             color: var(--text-primary);
-            font-family: inherit;
             font-size: 15px;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
             text-decoration: none;
+            transition: all 0.2s;
         }
 
         .btn-secondary:hover {
-            background: var(--bg-secondary);
             border-color: var(--text-muted);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            background: var(--bg-secondary);
         }
 
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
             font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
             animation: fadeInUp 0.8s ease-out 0.5s both;
         }
 
-        .scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--text-muted), transparent);
-            animation: scrollPulse 2s infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Products Section */
-        .products {
-            padding: 120px 48px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
+        /* Section Styles */
         .section-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
+            font-size: 12px;
             color: var(--accent-purple);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -325,7 +298,7 @@
         .section-title {
             font-size: clamp(32px, 5vw, 48px);
             font-weight: 600;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
             margin-bottom: 16px;
         }
 
@@ -333,13 +306,67 @@
             font-size: 18px;
             color: var(--text-secondary);
             max-width: 500px;
-            margin-bottom: 64px;
+            margin: 0 auto 48px;
+        }
+
+        /* Vision Section */
+        .vision {
+            padding: 120px 48px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, var(--bg-secondary) 50%, transparent 100%);
+        }
+
+        .vision-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .vision h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .vision h2 span {
+            background: var(--gradient-purple);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vision-text {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .vision-highlight {
+            display: inline-block;
+            padding: 16px 32px;
+            background: var(--bg-primary);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--accent-purple);
+            margin-top: 16px;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 120px 48px;
+            text-align: center;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .product-card {
@@ -347,39 +374,47 @@
             border: 1px solid var(--bg-tertiary);
             border-radius: 20px;
             padding: 40px;
+            text-align: left;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: inherit;
         }
 
         .product-card:hover {
-            border-color: var(--text-muted);
             transform: translateY(-4px);
+            border-color: var(--text-muted);
         }
 
-        .product-card::before {
-            content: '';
+        .product-card.punchd:hover {
+            border-color: var(--accent-orange);
+        }
+
+        .product-card.apex:hover {
+            border-color: var(--accent-cyan);
+        }
+
+        .product-status {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: 24px;
+            right: 24px;
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .product-card:hover::before {
-            opacity: 1;
+        .product-status.live {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
         }
 
-        .product-card.punchd::before {
-            background: var(--gradient-orange);
-        }
-
-        .product-card.apex::before {
-            background: var(--gradient-cyan);
+        .product-status.soon {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-indigo);
         }
 
         .product-icon {
@@ -392,35 +427,34 @@
             margin-bottom: 24px;
         }
 
-        .product-card.punchd .product-icon {
-            background: var(--gradient-orange);
-        }
-
-        .product-card.apex .product-icon {
-            background: var(--gradient-cyan);
-        }
-
         .product-icon svg {
             width: 28px;
             height: 28px;
         }
 
+        .punchd .product-icon {
+            background: var(--gradient-orange);
+        }
+
+        .apex .product-icon {
+            background: var(--gradient-cyan);
+        }
+
         .product-name {
             font-size: 24px;
             font-weight: 600;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         .product-tagline {
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
         }
 
         .product-desc {
-            font-size: 14px;
-            color: var(--text-muted);
+            font-size: 15px;
+            color: var(--text-secondary);
             line-height: 1.7;
             margin-bottom: 24px;
         }
@@ -431,59 +465,31 @@
             gap: 8px;
             font-size: 14px;
             font-weight: 500;
-            color: var(--text-primary);
-            transition: gap 0.2s;
-        }
-
-        .product-card:hover .product-link {
-            gap: 12px;
+            color: var(--text-muted);
+            transition: color 0.2s;
         }
 
         .product-link svg {
             width: 16px;
             height: 16px;
+            transition: transform 0.2s;
         }
 
-        .product-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            background: var(--bg-tertiary);
-            border-radius: 100px;
-            font-size: 12px;
-            color: var(--text-muted);
-            position: absolute;
-            top: 24px;
-            right: 24px;
+        .product-card:hover .product-link {
+            color: var(--text-primary);
         }
 
-        .product-status.live::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #22c55e;
-            border-radius: 50%;
-        }
-
-        .product-status.soon::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent-orange);
-            border-radius: 50%;
+        .product-card:hover .product-link svg {
+            transform: translateX(4px);
         }
 
         /* About Section */
         .about {
             padding: 120px 48px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--bg-tertiary);
-            border-bottom: 1px solid var(--bg-tertiary);
         }
 
         .about-inner {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -494,13 +500,13 @@
         .about-content h2 {
             font-size: clamp(32px, 4vw, 44px);
             font-weight: 600;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
             margin-bottom: 24px;
             line-height: 1.2;
         }
 
         .about-content p {
-            font-size: 17px;
+            font-size: 16px;
             color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 16px;
@@ -508,49 +514,47 @@
 
         .about-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
         }
 
         .stat {
-            padding: 32px;
-            background: var(--bg-primary);
+            background: var(--bg-secondary);
             border: 1px solid var(--bg-tertiary);
             border-radius: 16px;
+            padding: 32px;
+            text-align: center;
         }
 
         .stat-value {
-            font-size: 40px;
+            font-size: 36px;
             font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 4px;
             background: var(--gradient-purple);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            margin-bottom: 8px;
         }
 
         .stat-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-muted);
         }
 
         /* Contact Section */
         .contact {
             padding: 120px 48px;
-            max-width: 800px;
-            margin: 0 auto;
             text-align: center;
         }
 
         .contact h2 {
             font-size: clamp(32px, 5vw, 48px);
             font-weight: 600;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
             margin-bottom: 16px;
         }
 
-        .contact p {
+        .contact > p {
             font-size: 18px;
             color: var(--text-secondary);
             margin-bottom: 40px;
@@ -564,27 +568,26 @@
             background: var(--bg-secondary);
             border: 1px solid var(--bg-tertiary);
             border-radius: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 18px;
             color: var(--text-primary);
+            font-size: 18px;
             text-decoration: none;
             transition: all 0.2s;
         }
 
         .contact-email:hover {
             border-color: var(--accent-purple);
-            background: var(--bg-tertiary);
+            transform: translateY(-2px);
         }
 
         .contact-email svg {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             color: var(--accent-purple);
         }
 
         /* Footer */
         footer {
-            padding: 40px 48px;
+            padding: 48px;
             border-top: 1px solid var(--bg-tertiary);
             display: flex;
             justify-content: space-between;
@@ -602,7 +605,6 @@
         .footer-logo {
             width: 32px;
             height: 32px;
-            opacity: 0.6;
         }
 
         .footer-copy {
@@ -626,6 +628,31 @@
             color: var(--text-primary);
         }
 
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--bg-tertiary);
+            border-radius: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             nav {
@@ -638,6 +665,16 @@
 
             .hero {
                 padding: 100px 24px 60px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .vision {
+                padding: 80px 24px;
             }
 
             .products {
@@ -701,6 +738,7 @@
             <span class="logo-text">krynovo</span>
         </a>
         <ul class="nav-links">
+            <li><a href="#vision">Vision</a></li>
             <li><a href="#products">Products</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -712,12 +750,23 @@
     <section class="hero">
         <div class="hero-badge">Building the future</div>
         <h1>We build <span>software</span> that works.</h1>
-        <p class="hero-sub">Krynovo is a technology company creating tools that help businesses operate smarter, faster, and more efficiently.</p>
+        <p class="hero-sub">Krynovo is a technology company creating AI-powered tools that help businesses operate smarter, faster, and more efficiently.</p>
         <div class="hero-cta">
             <a href="#products" class="btn-primary">View Products</a>
             <a href="#contact" class="btn-secondary">Partner With Us</a>
         </div>
         <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision" id="vision">
+        <div class="vision-content">
+            <p class="section-label">Our Vision</p>
+            <h2>Pioneering the <span>AI-powered</span> software revolution.</h2>
+            <p class="vision-text">We're two 16-year-olds on a mission to be key players in the new movement of AI-backed software solutions for every industry's problems.</p>
+            <p class="vision-text">The future of business software isn't just about automation—it's about intelligence. We're building tools that don't just work, they think. And we're doing it one leg at a time, one industry at a time.</p>
+            <div class="vision-highlight">// The journey starts here</div>
+        </div>
     </section>
 
     <!-- Products Section -->
@@ -735,7 +784,7 @@
                         <polyline points="12 6 12 12 16 10"/>
                     </svg>
                 </div>
-                <h3 class="product-name">Punchd</h3>
+                <h3 class="product-name">Punch'd</h3>
                 <p class="product-tagline">Construction Time & Attendance</p>
                 <p class="product-desc">GPS-verified time tracking, face recognition clock-ins, and real-time cost analytics for construction crews. Know exactly where your labor dollars go.</p>
                 <span class="product-link">
@@ -786,8 +835,8 @@
                     <div class="stat-label">Enterprise Focus</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-value">SaaS</div>
-                    <div class="stat-label">Cloud-Native Platform</div>
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">Powered Solutions</div>
                 </div>
                 <div class="stat">
                     <div class="stat-value">24/7</div>
@@ -802,13 +851,17 @@
         <p class="section-label">Contact</p>
         <h2>Let's talk.</h2>
         <p>Interested in our products or want to explore a partnership? We'd love to hear from you.</p>
-        <a href="/cdn-cgi/l/email-protection#0c64696060634c677e7562637a63226f6361" class="contact-email">
+        <a href="mailto:hello@krynovo.com" class="contact-email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
             </svg>
-            <span class="__cf_email__" data-cfemail="9df5f8f1f1f2ddf6efe4f3f2ebf2b3fef2f0">[email&#160;protected]</span>
+            hello@krynovo.com
         </a>
+        <div class="social-links" style="justify-content: center; margin-top: 32px;">
+            <a href="https://twitter.com/krynovo" target="_blank" title="Twitter/X">𝕏</a>
+            <a href="https://instagram.com/krynovo" target="_blank" title="Instagram">📸</a>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -829,7 +882,13 @@
                 </g>
                 <circle cx="88" cy="32" r="10" fill="white" opacity="0.85"/>
             </svg>
-            <span class="footer-copy">© 2024 Krynovo. All rights reserved.</span>
+            <span class="footer-copy">© 2025 Krynovo. All rights reserved.</span>
         </div>
         <div class="footer-links">
-            <a href="#
+            <a href="https://twitter.com/krynovo" target="_blank">Twitter</a>
+            <a href="https://instagram.com/krynovo" target="_blank">Instagram</a>
+            <a href="mailto:hello@krynovo.com">Contact</a>
+        </div>
+    </footer>
+</body>
+</html>
